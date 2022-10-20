@@ -1,6 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>Search For a Free Game:</p>
+    <input v-model="genre" placeholder="Enter a Genre" />
+    <button @click="getGame">Search</button>
+
+
+
+
   </div>
 </template>
 
@@ -17,7 +23,11 @@ export default {
           'X-RapidAPI-Key': 'dec105ee6bmshca936e1844266f4p195268jsn40a6cdad4497'
         }
       },
+
+      
+
     //attatching variable names to data
+      genre: '',
       searchInput: this.pSearch,
       gameId: this.pId,
       developer: this.pDeveloper,
@@ -38,8 +48,16 @@ export default {
 
   methods: {
     //parsing through api using user search
+    search(){
+      this.searchInput = this.genre
+      console.log(this.searchInput)
+      console.log(this.options)
+    },
+    
     async getGame(event){
       event.preventDefault();
+      
+      this.search(this.genre)
 
       if(!this.searchInput){
         return false;
