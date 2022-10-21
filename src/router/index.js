@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import about from '@/views/AboutView.vue';
+import HomeView from '../views/GameSearch.vue'
+import saved from '@/views/SavedGames.vue';
+
 
 const routes = [
   {
@@ -9,10 +10,10 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: about,
-  }
+    path: '/saved',
+    name: 'saved',
+    component: saved,
+  },
 ]
 
 const router = createRouter({

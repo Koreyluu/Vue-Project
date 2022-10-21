@@ -1,17 +1,23 @@
 <template>
-  <div class="about">
-    <p>Search For a Free Game:</p>
-    <input v-model="genre" placeholder="Enter a Genre" />
-    <button @click="getGame">Search</button>
 
+    <div class="container" style="padding: 50px 50px 50px 50px">
+        <div class="mb-3">
+            <label class="form-label" style="font-weight: bolder; padding:25px 0px 0px 0px;" > Search for Free to Play Games! </label>
+        </div>
+      
+        <div class="input-group">
+            
+            <input class="form-control" v-model="genre" placeholder="Enter a Genre">
+            <button class="btn btn-outline-light" @click="getGame">Search</button>
+        </div>
+    </div>
 
-
-
-  </div>
 </template>
 
 <script>
 export default {
+
+  name: 'GameSearch',
 
   data(){
     return{
@@ -23,8 +29,6 @@ export default {
           'X-RapidAPI-Key': 'dec105ee6bmshca936e1844266f4p195268jsn40a6cdad4497'
         }
       },
-
-      
 
     //attatching variable names to data
       genre: '',
@@ -47,13 +51,14 @@ export default {
   },
 
   methods: {
-    //parsing through api using user search
+    //user search input
     search(){
       this.searchInput = this.genre
-      console.log(this.searchInput)
-      console.log(this.options)
+      // console.log(this.searchInput)
+      // console.log(this.options)
     },
     
+    //parsing through api using user search
     async getGame(event){
       event.preventDefault();
       
@@ -62,6 +67,9 @@ export default {
       if(!this.searchInput){
         return false;
       }
+
+        console.log(this.searchInput)
+        console.log(this.options)
 
      try {
           const games = await fetch(
@@ -72,20 +80,32 @@ export default {
           }
 
           const {items} = await games.json();
-
+          
           this.gameId = items.id
           this.developer = items.developer || ['No developer']
           this.title = items.title
           this.description = items.short_description
           this.image = items.thumbnail || ''
 
+          // const {gameData} = items.map((game) => ({ 
+          //   this.gameId = game.id,
+          //   this.developer = game.developer || ['No developer'],
+          //   this.title = game.title,
+          //   this.description = game.short_description,
+          //   this.image = game.thumbnail || ''
+          // }));
+
+
           }catch (err) {
           console.error(err)
-      }
+          }
+          console.log(this.title)
     }
-
-
   }
 }
 
 </script>
+
+<style scoped>
+  
+</style>
