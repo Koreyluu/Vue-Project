@@ -8,36 +8,26 @@
           <router-link class="nav-link" style="text-decoration: none;" to="/saved">Saved Games</router-link>
       </div>
     </div>
-      <button @click="showLogin" class="btn btn-outline-light" href="/login">Log in</button>
-      
-  </div>
+      <LoginForm/>
+      <SignupForm/>
+    </div>
 </nav>
-  <login-form v-if="login"/>
+  
   <router-view/>
 </template>
 
 <script>
 import LoginForm from '@/components/LoginForm.vue';
+import SignupForm from '@/components/SignupForm.vue'
 
 export default {
   name: 'index-i',
   
   components:{
-    LoginForm
+    LoginForm,
+    SignupForm
   },
 
-  data(){
-    return{
-      login: false,
-    }
-  },
-
-  methods:{
-    showLogin(event){
-      event.preventDefault();
-      this.login = true;
-    }
-  }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-
+<button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-light" >Log in</button> 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -11,22 +11,22 @@
       <div class="modal-body">
          <form>
             <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <label class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3">
+                <input type="email" class="form-control" id="loginEmail">
             </div>
             </div>
             <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <label class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3">
+                <input type="password" class="form-control" id="loginPassword">
             </div>
             </div>
             <button type="submit" class="btn btn-primary">Sign in</button>
         </form>
       </div>
       <div class="modal-footer">
-        <!-- <router-link style="text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" to="/signup">Sign Up Here!</router-link> -->
+        <!-- <SignupForm/> -->
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -36,8 +36,14 @@
 </template>
 
 <script>
+// import SignupForm from '@/components/SignupForm.vue';
+
 export default {
   name: 'LoginForm',
-    
+
+  // components:{
+  //   SignupForm,
+  // }
+
 }
 </script>
