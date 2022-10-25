@@ -6,7 +6,7 @@
         </div>
       
         <div class="input-group">  
-            <input class="form-control" v-model="genre" placeholder="Enter a Genre">
+            <input class="form-control" v-model="searchInput" placeholder="Enter a Genre">
             <button class="btn btn-outline-light" @click="getGame">Search</button>
         </div>
     </div>
@@ -28,7 +28,7 @@
 export default {
 
   name: 'GameSearch',
-
+  
   data(){
     return{
     // generated api key
@@ -41,44 +41,67 @@ export default {
       },
 
     //attatching variable names to data
-      genre: '',
-      searchInput: this.pSearch,
-      gameId: this.pId,
-      developer: this.pDeveloper,
-      title: this.pTitle,
-      description: this.pDescription,
-      image: this.pImage
+      searchedGames: [],
+      setSearchedGames: [],
+      searchInput: '',
+      setSavedIds: this.savedIds,
+      setSearchInput: this.search,
+      gameId: this.id,
+      developer: this.gameDev,
+      title: this.gameTitle,
+      description: this.gameDesc,
+      image: this.gameImage
     }
   },
   //specifying type of data
   props:{
-    pSearch: String,
-    pId: Number,
-    pDeveloper: String,
-    pTitle: String,
-    pDescription: String,
-    pImage: String
+    savedIds: {
+      type: Number,
+      default: null,
+    },
+    search: {
+      type: String,
+      default: null,
+    },
+    id: {
+      type: Number,
+      default: null,
+    },
+    gameDev: {
+      type: String,
+      default: null,
+    },
+    gameTitle: {
+      type: String,
+      default: null,
+    },
+    gameDesc: {
+      type: String,
+      default: null,
+    },
+    gameImage: {
+      type: String,
+      default: null,
+    },
   },
 
   methods: {
     //user search input
-    search(){
-      this.searchInput = this.genre
-      // console.log(this.searchInput)
-      // console.log(this.options)
+    userSearch(){
+      this.setSearchInput = this.searchInput
     },
     
     //parsing through api using user search
     async getGame(event){
       event.preventDefault();
       
-      this.search(this.genre)
+      this.userSearch(this.searchInput)
 
-      if(!this.searchInput){
+      if(!this.setSearchInput){
         return false;
       }
 
-        console.log(this.searchInput)
+        console.log(this.setSearchInput)
         console.log(this.options)
 
      try {
@@ -97,20 +120,13 @@ export default {
           this.description = items.short_description
           this.image = items.thumbnail || ''
 
-          // const {gameData} = items.map((game) => ({ 
-          //   this.gameId = game.id,
-          //   this.developer = game.developer || ['No developer'],
-          //   this.title = game.title,
-          //   this.description = game.short_description,
-          //   this.image = game.thumbnail || ''
-          // }));
-
-
           }catch (err) {
           console.error(err)
           }
           console.log(this.title)
-    }
+    },
+
+    
   }
 }
 
