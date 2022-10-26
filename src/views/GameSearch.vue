@@ -42,10 +42,8 @@ export default {
 
     //attatching variable names to data
       searchedGames: [],
-      setSearchedGames: [],
-      searchInput: '',
+      searchInput: this.search,
       setSavedIds: this.savedIds,
-      setSearchInput: this.search,
       gameId: this.id,
       developer: this.gameDev,
       title: this.gameTitle,
@@ -86,22 +84,16 @@ export default {
   },
 
   methods: {
-    //user search input
-    userSearch(){
-      this.setSearchInput = this.searchInput
-    },
     
     //parsing through api using user search
     async getGame(event){
       event.preventDefault();
       
-      this.userSearch(this.searchInput)
-
-      if(!this.setSearchInput){
+      if(!this.searchInput){
         return false;
       }
 
-        console.log(this.setSearchInput)
+        console.log(this.searchInput)
         console.log(this.options)
 
      try {
@@ -113,17 +105,32 @@ export default {
           }
 
           const {items} = await games.json();
-          
-          this.gameId = items.id
-          this.developer = items.developer || ['No developer']
-          this.title = items.title
-          this.description = items.short_description
-          this.image = items.thumbnail || ''
+
+          const gameData = {
+            gameId: items.id,
+            developer: items.developer || ['No Devoloper'],
+            title: items.title,
+            description: items.short_description,
+            image: items.thumbnail || ''
+          }
+
+          this.searchedGames = gameData;
+
+          // const gameData = items.map((game)) =>{
+          //   this.gameId = game.id
+          //   this.developer = game.developer || ['No developer']
+          //   this.title = game.title
+          //   this.description = game.short_description
+          //   this.image = game.thumbnail || ''
+          // }
 
           }catch (err) {
           console.error(err)
           }
-          console.log(this.title)
+
+          this.searchInput =''
+          console.log(this.searchInput)
+          console.log(this.searchedGames)
     },
 
     
