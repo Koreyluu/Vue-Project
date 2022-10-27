@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import index from './index.vue'
 import router from './router'
-import './axios'
 // import "bootstrap/dist/css/bootstrap.min.css"
 // import "bootstrap"
 
