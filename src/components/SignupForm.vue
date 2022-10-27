@@ -27,7 +27,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: "SignupForm",
@@ -41,27 +41,13 @@ export default {
  },
 
 methods:{
-  handleSubmit(){
-    
-    const data = {
+  async handleSubmit() {
+    await axios.post('ßsignup',{
       username: this.username,
       email: this.email,
       password: this.password
-    };
-
-    console.log(data)
-
-    // axios.post('https://localhost:8080/', data)
-    // .then(
-    //   res => {
-    //     console.log(res)
-    //   }
-    // ).catch(
-    //   err =>{
-    //     console.log(err)
-    //   }
-    // )
-
+    });
+    this.$router.push('/login');
   }
 }
 

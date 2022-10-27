@@ -1,11 +1,10 @@
 <template>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" style="color: lightcoral;">Free Game Search</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-          <router-link class="nav-link" style="text-decoration: none; " to="/">Home</router-link>
+          <router-link class="nav-link" style="text-decoration: none; " to="/home">Home</router-link>
           <router-link class="nav-link" style="text-decoration: none;" to="/saved">Saved Games</router-link>
       </div>
     </div>
@@ -18,9 +17,9 @@
 </template>
 
 <script>
-
 export default {
   name: 'index-i',
+
 
 }
 </script>

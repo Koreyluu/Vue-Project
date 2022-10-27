@@ -1,34 +1,32 @@
 <template>
-
     <div class="container" style="padding: 50px 50px 50px 50px">
+      <!-- <strong v-if="user">hi {{user.username}}</strong> -->
+      <!-- <div v-if="!user"></div> -->
         <div class="mb-3">
-            <label class="form-label" style="font-weight: bolder; padding:25px 0px 0px 0px;" > Search for Free to Play Games! </label>
+            <label class="form-label" style="font-weight: bolder; padding:25px" > Search for Free to Play Games! </label>
         </div>
-      
         <div class="input-group">  
             <input class="form-control" v-model="searchInput" placeholder="Enter a Genre">
             <button class="btn btn-outline-light" @click="getGame">Search</button>
         </div>
     </div>
-
-    <!-- <div class="container">
+    <div class="container">
       <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>    
           </div>
       </div>
-    </div> -->
-
+    </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-
   name: 'GameSearch',
-  
+
   data(){
     return{
     // generated api key
@@ -41,50 +39,22 @@ export default {
       },
 
     //attatching variable names to data
-      searchedGames: [],
-      searchInput: this.search,
-      setSavedIds: this.savedIds,
-      gameId: this.id,
-      developer: this.gameDev,
-      title: this.gameTitle,
-      description: this.gameDesc,
-      image: this.gameImage
+      user: null,
+      searchedGames: '',
+      searchInput: '',
+      setSavedIds: '',
+      gameId: '',
+      developer: '',
+      title: '',
+      description: '',
+      image: ''
     }
   },
-  //specifying type of data
-  props:{
-    savedIds: {
-      type: Number,
-      default: null,
-    },
-    search: {
-      type: String,
-      default: null,
-    },
-    id: {
-      type: Number,
-      default: null,
-    },
-    gameDev: {
-      type: String,
-      default: null,
-    },
-    gameTitle: {
-      type: String,
-      default: null,
-    },
-    gameDesc: {
-      type: String,
-      default: null,
-    },
-    gameImage: {
-      type: String,
-      default: null,
-    },
+  async created (){
+    const response = await axios.get('user');
+    this.user = response.data
   },
-
   methods: {
-    
     //parsing through api using user search
     async getGame(event){
       event.preventDefault();
@@ -93,10 +63,10 @@ export default {
         return false;
       }
 
+     try {
         console.log(this.searchInput)
         console.log(this.options)
-
-     try {
+        
           const games = await fetch(
             `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${this.searchInput}`, this.options)
 
@@ -113,27 +83,17 @@ export default {
             description: items.short_description,
             image: items.thumbnail || ''
           }
-
+          
           this.searchedGames = gameData;
-
-          // const gameData = items.map((game)) =>{
-          //   this.gameId = game.id
-          //   this.developer = game.developer || ['No developer']
-          //   this.title = game.title
-          //   this.description = game.short_description
-          //   this.image = game.thumbnail || ''
-          // }
 
           }catch (err) {
           console.error(err)
           }
-
+          console.log(this.gameData)
           this.searchInput =''
           console.log(this.searchInput)
           console.log(this.searchedGames)
     },
-
-    
   }
 }
 

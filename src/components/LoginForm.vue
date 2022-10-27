@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'LoginForm',
 
@@ -32,18 +33,15 @@ export default {
   },
 
   methods: {
-      handleSubmit(){
-    
-    const data = {
-      email: this.email,
-      password: this.password
-    };
-
-    console.log(data)
-
+    async handleSubmit (){
+      const response = await axios.post('login', {
+        email: this.email,
+        password: this.password
+      })
+      console.log(response);
+      localStorage.setItem('token', response.data.token)
+    }
   }
-  }
-
 }
 </script>
 
