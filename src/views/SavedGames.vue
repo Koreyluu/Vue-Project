@@ -1,25 +1,42 @@
 <template>
-<div class="container" style="padding: 50px 50px 50px 50px">
-      <div>
-            <h1>saved games :3</h1>
-      </div>
+<header>
+  <h3>Your Favorite Games!</h3>
+</header>
+<div class="container-fluid" style="padding: 50px">
+    <game-display @delete-game="$emit('delete-game', game.id)" :games="games"/>
 </div>
-<div class="container">
-  <div class="card" style="width: 18rem;">
-    <img src="" class="card-img-top" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>    
-      </div>
-  </div>
-</div>      
 </template>
 
 <script>
-
+import GameDisplay from '@/components/GamesDisplay.vue'
 export default {
-
+  name: 'SavedGames',
+  components: {
+    GameDisplay,
+  },
+  data(){
+    return{
+      games: [],
+    }
+  },
+  created(){
+    this.games = [
+      {
+        id: 0,
+        title: 'League of legends',
+        developer: 'RiotGames',
+        description: 'Its a MOBA that makes your lose your mental sanity',
+        image:'src/images/lolImage.jpeg'
+      },
+      {
+        id: 1,
+        title: 'Valorant',
+        developer: 'RiotGames',
+        description: 'Shooty shoot pew pew',
+        image:'src/images/ValorantImage.jpeg'
+      }
+    ]
+  },
 }
 
 </script>

@@ -17,14 +17,19 @@
 <script>
 export default {
   name: 'index-i',
-
-
 }
 </script>
 
 <style>
   #app{
     background: gray;
-
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding-top: 1%;
+    padding-left: 2%;
   }
 </style>
