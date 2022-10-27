@@ -3,7 +3,7 @@
   <h3>Your Favorite Games!</h3>
 </header>
 <div class="container-fluid" style="padding: 50px">
-    <game-display @delete-game="$emit('delete-game', game.id)" :games="games"/>
+    <game-display :games="games"/>
 </div>
 </template>
 
@@ -18,6 +18,12 @@ export default {
     return{
       games: [],
     }
+  },
+  methods: {
+    deleteGame(id){
+      this.games = this.games.filter((game) => game.id !== id)
+    }
+ 
   },
   created(){
     this.games = [

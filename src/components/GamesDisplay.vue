@@ -9,7 +9,7 @@
         </div>
         <div>
             <button class="btn btn-outline-primary" @click="getGame">Edit</button>
-            <button class="btn btn-outline-danger" @click="onDelete(game.id)">Delete</button>
+            <button class="btn btn-outline-danger" @click="deleteGame">Delete</button>
         </div>
     </div>
  </div>    
@@ -22,12 +22,6 @@ export default {
     props: {
         games: Array,
     },
-
-    methods: {
-        onDelete(id){
-            this.$emit('delete-game', id)
-        }
-    }
 }
 </script>
 
