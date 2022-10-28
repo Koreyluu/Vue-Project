@@ -3,7 +3,7 @@
   <h3>Your Favorite Games!</h3>
 </header>
 <div class="container-fluid" style="padding: 50px">
-    <game-display :games="games"/>
+    <game-display @click='deleteGame' :games="games"/>
 </div>
 </template>
 
@@ -19,25 +19,28 @@ export default {
       games: [],
     }
   },
+  mounted(){
+        if(localStorage.getItem('games')) {
+      try {
+        this.games = JSON.parse(localStorage.getItem('games'));
+      } catch(e) {
+        localStorage.removeItem('games');
+      }
+    }
+  },
   methods: {
-
+      deleteGame(id){
+      this.game = this.game.splice(id, 1)
+    }
  
   },
   created(){
     this.games = [
       {
-        id: 0,
-        title: 'League of legends',
-        developer: 'RiotGames',
-        description: 'Its a MOBA that makes your lose your mental sanity',
-        image:'src/images/lolImage.jpeg'
-      },
-      {
-        id: 1,
-        title: 'Valorant',
-        developer: 'RiotGames',
-        description: 'Shooty shoot pew pew',
-        image:'src/images/ValorantImage.jpeg'
+        title: this.games.title,
+        developer: this.games.developer,
+        description: this.games.description,
+        image: this.games.image
       }
     ]
   },

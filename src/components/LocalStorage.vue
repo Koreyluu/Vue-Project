@@ -30,15 +30,6 @@ export default {
       image: null
     }
   },
-  mounted(){
-        if(localStorage.getItem('games')) {
-      try {
-        this.cats = JSON.parse(localStorage.getItem('games'));
-      } catch(e) {
-        localStorage.removeItem('games');
-      }
-    }
-  },
   methods: {  
     onSubmit(e){
       e.preventDefault()

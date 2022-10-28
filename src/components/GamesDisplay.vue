@@ -24,9 +24,7 @@ export default {
     },
 
     methods:{
-     deleteGame(id){
-      this.game = this.game.splice(id, 1)
-    }
+
     }
 }
 </script>
