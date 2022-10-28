@@ -1,17 +1,23 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import GameList from '../views/GameList.vue';
 import GameAdd from '../views/GameAdd.vue';
-import saved from '@/views/SavedGames.vue';
+import GameEdit from '../views/GameEdit.vue';
 
 const routes = [
   {
-    path: '/home',
-    name: 'home',
-    component: GameAdd
+    path: '/add',
+    name: 'add',
+    component: GameAdd,
   },
   {
-    path: '/saved',
-    name: 'saved',
-    component: saved,
+    path: '/home-list',
+    name: 'home-list',
+    component: GameList,
+  },
+  {
+    path: '/edit/:id',
+    name: 'edit',
+    component: GameEdit,
   },
 ]
 

@@ -4,8 +4,9 @@
     <a class="navbar-brand" style="color: lightcoral;">Game Library</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-          <router-link class="nav-link" style="text-decoration: none; " to="/home">Home</router-link>
-          <router-link class="nav-link" style="text-decoration: none;" to="/saved">Saved Games</router-link>
+          <router-link class="nav-link" style="text-decoration: none; " to="/add">Add Game</router-link>
+          <router-link class="nav-link" style="text-decoration: none; " to="/home-list">Game List</router-link>
+
       </div>
     </div>
   </div>
@@ -21,9 +22,6 @@ export default {
 </script>
 
 <style>
-  #app{
-    background: gray;
-  }
   header {
     display: flex;
     justify-content: space-between;
