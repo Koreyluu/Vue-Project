@@ -3,7 +3,7 @@
   <h3>Your Favorite Games!</h3>
 </header>
 <div class="container-fluid" style="padding: 50px">
-    <game-display @click='deleteGame' :games="games"/>
+    <game-display :games="games"/>
 </div>
 </template>
 
@@ -20,30 +20,14 @@ export default {
     }
   },
   mounted(){
-        if(localStorage.getItem('games')) {
-      try {
+    if(localStorage.getItem('games')) {
+        try {
         this.games = JSON.parse(localStorage.getItem('games'));
-      } catch(e) {
+    } catch(e) {
         localStorage.removeItem('games');
-      }
     }
-  },
-  methods: {
-      deleteGame(id){
-      this.game = this.game.splice(id, 1)
-    }
- 
-  },
-  created(){
-    this.games = [
-      {
-        title: this.games.title,
-        developer: this.games.developer,
-        description: this.games.description,
-        image: this.games.image
-      }
-    ]
-  },
+  }
+},
 }
 
 </script>

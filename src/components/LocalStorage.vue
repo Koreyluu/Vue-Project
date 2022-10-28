@@ -2,17 +2,18 @@
       <div class="container" style="padding: 50px">
         <div class="input">
             <div class="input-group">  
-                <input class="form-control" v-model="title" placeholder="Enter title">
-            </div>
-            <div class="input-group">  
-                <input class="form-control" v-model="developer" placeholder="Enter developer">
-            </div>
-            <div class="input-group">  
-                <input class="form-control" v-model="description" placeholder="Enter description">
-            </div>
-            <div class="input-group">  
                 <input class="form-control" v-model="image" placeholder="Enter Image Link">
             </div>
+            <div class="input-group">  
+                <input class="form-control" v-model="title" placeholder="Enter Title">
+            </div>
+            <div class="input-group">  
+                <input class="form-control" v-model="developer" placeholder="Enter Developer">
+            </div>
+            <div class="input-group">  
+                <textarea class="form-control" v-model="description" placeholder="Enter Description" rows="8"></textarea>
+            </div>
+
             <button class="btn btn-outline-light" @click="onSubmit">Submit</button>
         </div>
     </div>
@@ -63,8 +64,8 @@ export default {
     align-content: center;
     margin: 5px;
     padding-top: 0%;
-    padding-right: 20%;
-    padding-left: 20%;
+    padding-right: 30%;
+    padding-left: 30%;
 
   }
   .input-group{
