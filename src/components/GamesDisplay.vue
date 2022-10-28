@@ -1,4 +1,5 @@
 <template>
+<!-- <div v-if="game.id = !null"> -->
  <div :key="game.id" v-for="game in games"> 
     <div class="card" style="width: 18rem;">
         <img src="" class="card-img-top" alt="gameImage">
@@ -8,11 +9,12 @@
             <p class="card-text">Description: {{game.description}}</p>  
         </div>
         <div>
-            <button class="btn btn-outline-primary" @click="getGame">Edit</button>
-            <button class="btn btn-outline-danger" @click="deleteGame">Delete</button>
+            <button class="btn btn-outline-primary">Edit</button>
+            <button class="btn btn-outline-danger">Delete</button>
         </div>
     </div>
  </div>    
+<!-- </div> -->
 </template>
 
 <script>
