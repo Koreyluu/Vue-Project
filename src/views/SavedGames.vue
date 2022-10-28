@@ -20,9 +20,7 @@ export default {
     }
   },
   methods: {
-    deleteGame(id){
-      this.games = this.games.filter((game) => game.id !== id)
-    }
+
  
   },
   created(){

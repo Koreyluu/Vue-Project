@@ -1,7 +1,7 @@
 <template>
  <div :key="game.id" v-for="game in games"> 
     <div class="card" style="width: 18rem;">
-        <!-- <img src="(game.image)" class="card-img-top" alt="gameImage"> -->
+        <img src="" class="card-img-top" alt="gameImage">
         <div class="card-body">
             <h5 class="card-title">{{game.title}}</h5>
             <h3 class="developer">Developer: {{game.developer}}</h3>
@@ -22,6 +22,12 @@ export default {
     props: {
         games: Array,
     },
+
+    methods:{
+     deleteGame(id){
+      this.game = this.game.splice(id, 1)
+    }
+    }
 }
 </script>
 
