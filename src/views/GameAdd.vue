@@ -2,8 +2,8 @@
   <div class="container">
     <h3>Add your Favorite Games!</h3>
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Enter Rating </label>
-        <input type="email" class="form-control" v-model="rating" id="exampleFormControlInput1">
+        <label for="exampleFormControlInput1" class="form-label">Enter ID </label>
+        <input type="email" class="form-control" v-model="id" id="exampleFormControlInput1">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Enter Title</label>
@@ -24,18 +24,20 @@
 </template>
 
 <script>
+// import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'GameAdd',
   data() {
     return{
-      games:[],
-      rating: 0,
+      games: [],
+      id: 0,
       title: '',
       developer: '',
       description: '',
     }
   },
   methods: {
+    // ...mapActions(["localStorageGetGames",]),
     localStorageGetGames() {
       if(localStorage.getItem('myGames')) {
         return JSON.parse(localStorage.getItem('myGames'))
@@ -49,19 +51,23 @@ export default {
     },
     addGame() {
       this.games.push({
-        rating: this.rating,
+        id: this.id,
         title: this.title,
         developer: this.developer,
         description: this.description,
       });
         this.localStorageSave();
-        this.rating = 0;
+        this.id = 0;
         this.title = '';
         this.developer = '';
         this.description = '';
         this.$router.push({name: 'home-list'})
     },
   },
+  // computed: mapGetters(['gameData']),
+  // created(){
+  //   this.localStorageGetGames()
+  // },  
   mounted() {
     this.games = this.localStorageGetGames();
   },

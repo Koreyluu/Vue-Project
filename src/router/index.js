@@ -15,7 +15,7 @@ const routes = [
     component: GameList,
   },
   {
-    path: '/edit/:id',
+    path: '/edit',
     name: 'edit',
     component: GameEdit,
   },
