@@ -55,7 +55,6 @@ export default {
         localStorage.setItem('myGames', JSON.stringify(this.games));
       },
       editGameRoute(){
-
         this.$router.push({name: 'edit'})
       }
     },

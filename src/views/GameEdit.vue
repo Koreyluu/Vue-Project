@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     editGame() {
-      
       this.game = JSON.parse(localStorage.getItem(`myGames`))
       console.log(this.game)
 

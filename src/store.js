@@ -10,7 +10,9 @@ const gamesData = createStore({
         gameData: (state) => state.games
     },
     mutations: {
-        setGames: (state, games) => state.games = games,
+        setGames(state, games){
+            state.games = games
+        }, 
         addGame(state, newGame){
             state.games.push(newGame)
         },
@@ -19,7 +21,7 @@ const gamesData = createStore({
         }
     },
     actions:{
-        localStorageGetGames({commit}, state){
+        async localStorageGetGames({commit}, state){
             if(localStorage.getItem('games')) {
                 state.games = JSON.parse(localStorage.getItem('myGames'))
                 } else {
