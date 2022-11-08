@@ -50,18 +50,24 @@ export default {
       localStorage.setItem('myGames', JSON.stringify(this.games));
     },
     addGame() {
-      this.games.push({
+      this.$store.dispatch('addGame',{
         id: this.id,
         title: this.title,
         developer: this.developer,
         description: this.description,
       });
-        this.localStorageSave();
+      // this.games.push({
+      //   id: this.id,
+      //   title: this.title,
+      //   developer: this.developer,
+      //   description: this.description,
+      // });
+      // this.localStorageSave();
         this.id = 0;
         this.title = '';
         this.developer = '';
         this.description = '';
-        this.$router.push({name: 'home-list'})
+        // this.$router.push({name: 'home-list'})
     },
   },
   // computed: mapGetters(['gameData']),
@@ -69,7 +75,7 @@ export default {
   //   this.localStorageGetGames()
   // },  
   mounted() {
-    this.games = this.localStorageGetGames();
+    // this.games = this.localStorageGetGames();
   },
 }
 </script>

@@ -32,7 +32,7 @@ export default {
   name: 'GameList',
     data(){
       return{
-        games: []
+        games: [],
     }
   },
     methods:{
@@ -49,8 +49,6 @@ export default {
         // let index = game.findIndex(id => id == this.id)
         // console.log(index)
 
-        // localStorage.removeItem(`myGames`, JSON.stringify(this.games))
-        // this.games = localStorage.getItem(`myGames`)
         this.games.splice(localStorage.getItem(`myGames`), 1);
         localStorage.setItem('myGames', JSON.stringify(this.games));
       },
@@ -59,8 +57,10 @@ export default {
       }
     },
   mounted(){
-    this.games = this.localStorageGetGames();
-    // this.$gamesData.commit('localStorageGetGames')
+    // this.games = this.localStorageGetGames();
+    this.games = this.$store.dispatch('localStorageInit')
+    console.log(this.$store)
+    
   }
 }
 </script>
