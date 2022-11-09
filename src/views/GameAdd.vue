@@ -24,7 +24,7 @@
 </template>
 
 <script>
-// import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: 'GameAdd',
   data() {
@@ -37,7 +37,6 @@ export default {
     }
   },
   methods: {
-    // ...mapActions(["localStorageGetGames",]),
     localStorageGetGames() {
       if(localStorage.getItem('myGames')) {
         return JSON.parse(localStorage.getItem('myGames'))
@@ -56,13 +55,6 @@ export default {
         developer: this.developer,
         description: this.description,
       });
-      // this.games.push({
-      //   id: this.id,
-      //   title: this.title,
-      //   developer: this.developer,
-      //   description: this.description,
-      // });
-      // this.localStorageSave();
         this.id = 0;
         this.title = '';
         this.developer = '';
@@ -70,12 +62,10 @@ export default {
         // this.$router.push({name: 'home-list'})
     },
   },
-  // computed: mapGetters(['gameData']),
-  // created(){
-  //   this.localStorageGetGames()
-  // },  
+  computed: mapGetters(['gameData']),
   mounted() {
-    // this.games = this.localStorageGetGames();
+     this.games = this.$store.dispatch('localStorageInit')
+     console.log('game add', this.games)
   },
 }
 </script>

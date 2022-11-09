@@ -59,8 +59,7 @@ export default {
   mounted(){
     // this.games = this.localStorageGetGames();
     this.games = this.$store.dispatch('localStorageInit')
-    console.log(this.$store)
-    
+    console.log('games list', this.games)
   }
 }
 </script>
