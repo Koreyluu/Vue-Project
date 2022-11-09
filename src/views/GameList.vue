@@ -36,28 +36,21 @@ export default {
     }
   },
     methods:{
-     localStorageGetGames() {
-      if(localStorage.getItem('myGames')) {
-        return JSON.parse(localStorage.getItem('myGames'))
-      } else {
-        localStorage.setItem('myGames', JSON.stringify([]));
-        return [];
-      }
-      },
       deleteGame(){
-        // let game = this.games.map(game => game.id)
-        // let index = game.findIndex(id => id == this.id)
-        // console.log(index)
-
-        this.games.splice(localStorage.getItem(`myGames`), 1);
-        localStorage.setItem('myGames', JSON.stringify(this.games));
+        // this.games.splice(localStorage.getItem(`myGames`), 1);
+        // localStorage.setItem('myGames', JSON.stringify(this.games));
+        this.$store.dispatch('deleteGame',{
+        id: this.id,
+        title: this.title,
+        developer: this.developer,
+        description: this.description,
+      });
       },
       editGameRoute(){
         this.$router.push({name: 'edit'})
       }
     },
   mounted(){
-    // this.games = this.localStorageGetGames();
     this.games = this.$store.dispatch('localStorageInit')
     console.log('games list', this.games)
   }
