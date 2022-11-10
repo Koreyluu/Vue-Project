@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-    <tr :key="game.id" v-for="game in games">
+    <tr :key="game.id" v-for="game in gameData">
         <td>{{game.id}}</td>
         <td>{{game.title}}</td>
         <td>{{game.developer}}</td>
@@ -28,7 +28,9 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: mapGetters(['gameData']),
   name: 'GameList',
     data(){
       return{
@@ -37,14 +39,11 @@ export default {
   },
     methods:{
       deleteGame(){
-        // this.games.splice(localStorage.getItem(`myGames`), 1);
-        // localStorage.setItem('myGames', JSON.stringify(this.games));
+        console.log('id', this.id)
         this.$store.dispatch('deleteGame',{
-        id: this.id,
-        title: this.title,
-        developer: this.developer,
-        description: this.description,
-      });
+            id: this.gameData.id,
+        });
+        console.log('id', this.id)
       },
       editGameRoute(){
         this.$router.push({name: 'edit'})

@@ -14,10 +14,10 @@ const gamesData = createStore({
             state.games = games
         }, 
         addGame(state, newGame){
-            console.log('whats happening here', state.games)
             state.games.push(newGame)
         },
         deleteGame(state, id){
+            console.log('delete', id)
             state.games.splice(id, 1)
         },
         editGame(){
@@ -25,7 +25,6 @@ const gamesData = createStore({
         },
         saveGame(state){
             localStorage.setItem('myNewGames', JSON.stringify(state.games));
-            console.log(localStorage)
         }
     },
     actions:{
@@ -42,6 +41,7 @@ const gamesData = createStore({
             commit('saveGame')
         },
         deleteGame({commit}, data){
+            console.log('commit', data)
             commit('deleteGame', data);
             commit('saveGame')
         }

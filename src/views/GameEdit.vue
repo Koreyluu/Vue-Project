@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     editGame() {
-      this.game = JSON.parse(localStorage.getItem(`myGames`))
-      console.log(this.game)
+      this.games = JSON.parse(localStorage.getItem(`myNewGames`))
+      console.log('edit', this.games)
 
       this.games.push({
             id: this.newId,
