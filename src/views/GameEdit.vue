@@ -18,13 +18,17 @@
         <input type="email" class="form-control" v-model="newDescription" id="exampleFormControlInput1" >
       </div>
       <div class="mb-3">
-        <button class="btn btn-primary" @click="editGame">Submit</button>
+         <tr :key="game.id" v-for="game in gameData">
+        <button class="btn btn-primary" :id="game.id" @click="editGame">Submit</button>
+         </tr>
       </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: mapGetters(['gameData']),
     name: 'GameEdit',
   data() {
     return{
@@ -38,8 +42,8 @@ export default {
   },
   methods: {
     editGame() {
-      this.games = JSON.parse(localStorage.getItem(`myNewGames`))
-      console.log('edit', this.games)
+      this.game = JSON.parse(localStorage.getItem(`myNewGames`))
+      console.log('edit', this.game)
 
       this.games.push({
             id: this.newId,
@@ -48,7 +52,7 @@ export default {
             description: this.newDescription,
         })
           
-        localStorage.setItem('myGames', JSON.stringify(this.games))
+        localStorage.setItem('myNewGames', JSON.stringify(this.games))
         this.$router.push({name: 'home-list'})
     },
   },

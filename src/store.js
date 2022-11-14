@@ -18,7 +18,7 @@ const gamesData = createStore({
         },
         deleteGame(state, id){
             console.log('delete', id)
-            state.games.splice(id, 1)
+            state.games = state.games.filter((games) => games.id !== id)
         },
         editGame(){
 

@@ -24,7 +24,6 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
 export default {
   name: 'GameAdd',
   data() {
@@ -51,7 +50,6 @@ export default {
         // this.$router.push({name: 'home-list'})
     },
   },
-  // computed: mapGetters(['gameData']),
   mounted() {
      this.games = this.$store.dispatch('localStorageInit')
      console.log('game add', this.games)
