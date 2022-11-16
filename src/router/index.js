@@ -10,8 +10,8 @@ const routes = [
     component: GameAdd,
   },
   {
-    path: '/home-list',
-    name: 'home-list',
+    path: '/',
+    name: 'game-list',
     component: GameList,
   },
   {
