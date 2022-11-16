@@ -26,7 +26,7 @@ const gamesData = createStore({
         },
         editGame(state, newData){
            let id = this.index
-           state.games[id] = (newData)
+           state.games[id] = newData
         },
         saveGame(state){
             localStorage.setItem('myNewGames', JSON.stringify(state.games));
