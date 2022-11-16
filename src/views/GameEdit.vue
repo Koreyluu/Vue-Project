@@ -44,7 +44,7 @@ export default {
        developer: this.newDeveloper,
        description: this.newDescription,
      });
-     this.$router.push({name: 'home-list'})
+     this.$router.push({name: 'game-list'})
     },
   },
 }
