@@ -18,9 +18,7 @@
         <input type="email" class="form-control" v-model="newDescription" id="exampleFormControlInput1" >
       </div>
       <div class="mb-3">
-         <tr :key="game.id" v-for="game in gameData">
-        <button class="btn btn-primary" :id="game.id" @click="editGame">Submit</button>
-         </tr>
+        <button class="btn btn-primary" @click="editGame">Submit</button>
       </div>
   </div>
 </template>
@@ -32,28 +30,21 @@ export default {
     name: 'GameEdit',
   data() {
     return{
-        games: [],
         newId: 0,
         newTitle: '',
         newDeveloper: '',
         newDescription: '',
-  
     }
   },
   methods: {
     editGame() {
-      this.game = JSON.parse(localStorage.getItem(`myNewGames`))
-      console.log('edit', this.game)
-
-      this.games.push({
-            id: this.newId,
-            title: this.newTitle,
-            developer: this.newDeveloper,
-            description: this.newDescription,
-        })
-          
-        localStorage.setItem('myNewGames', JSON.stringify(this.games))
-        this.$router.push({name: 'home-list'})
+     this.$store.dispatch('editGame',{
+       id: this.newId,
+       title: this.newTitle,
+       developer: this.newDeveloper,
+       description: this.newDescription,
+     });
+     this.$router.push({name: 'home-list'})
     },
   },
 }

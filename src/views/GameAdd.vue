@@ -47,7 +47,7 @@ export default {
         this.title = '';
         this.developer = '';
         this.description = '';
-        // this.$router.push({name: 'home-list'})
+        this.$router.push({name: 'home-list'})
     },
   },
   mounted() {

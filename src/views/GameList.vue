@@ -19,7 +19,7 @@
         <td>{{game.title}}</td>
         <td>{{game.developer}}</td>
         <td>{{game.description}}</td>
-        <td><button class="btn btn-info" @click="editGameRoute">Edit</button></td>
+        <td><button class="btn btn-info" @click="editGameRoute(game.id)">Edit</button></td>
         <td><button class="btn btn-danger" @click="deleteGame(game.id)">Delete</button></td>
     </tr>
     </tbody>
@@ -34,14 +34,16 @@ export default {
   name: 'GameList',
     data(){
       return{
-        games: []
+        games: [],
+        index: -1,
     }
   },
     methods:{
       deleteGame(id){
         this.$store.dispatch('deleteGame', id);
       },
-      editGameRoute(){
+      editGameRoute(id){
+        this.$store.dispatch('getData', id);
         this.$router.push({name: 'edit'})
       }
     },

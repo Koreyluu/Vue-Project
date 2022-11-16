@@ -4,6 +4,7 @@ const gamesData = createStore({
     state() {
         return{
             games:[],
+            index: -1,
         }
     },
     getters:{
@@ -17,11 +18,15 @@ const gamesData = createStore({
             state.games.push(newGame)
         },
         deleteGame(state, id){
-            console.log('delete', id)
             state.games = state.games.filter((games) => games.id !== id)
         },
-        editGame(){
-
+        getData(state, id){
+            this.index = state.games.findIndex((obj => obj.id == id));
+            return this.index
+        },
+        editGame(state, newData){
+           let id = this.index
+           state.games[id] = (newData)
         },
         saveGame(state){
             localStorage.setItem('myNewGames', JSON.stringify(state.games));
@@ -41,8 +46,14 @@ const gamesData = createStore({
             commit('saveGame')
         },
         deleteGame({commit}, data){
-            console.log('commit', data)
             commit('deleteGame', data);
+            commit('saveGame')
+        },
+        getData({commit}, data){
+            commit('getData', data)
+        },
+        editGame({commit}, data){
+            commit('editGame', data);
             commit('saveGame')
         }
     }
