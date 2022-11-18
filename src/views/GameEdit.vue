@@ -38,13 +38,24 @@ export default {
   },
   methods: {
     editGame() {
-     this.$store.dispatch('editGame',{
-       id: this.newId,
-       title: this.newTitle,
-       developer: this.newDeveloper,
-       description: this.newDescription,
-     });
-     this.$router.push({name: 'game-list'})
+      const found = this.gameData.some(el => el.id === this.newId);
+      if(!found){
+        this.$store.dispatch('editGame',{
+          id: this.newId,
+          title: this.newTitle,
+          developer: this.newDeveloper,
+          description: this.newDescription,
+        });
+        this.$router.push({name: 'game-list'})
+      }else{
+        alert('This ID already exists!');
+        this.newId = 0;
+        this.newTitle = '';
+        this.newDeveloper = '';
+        this.newDescription = '';
+      }
+
+    // console.log('??', this.gameData[3].title)
     },
   },
 }

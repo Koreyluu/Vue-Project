@@ -24,7 +24,9 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: mapGetters(['gameData']),
   name: 'GameAdd',
   data() {
     return{
@@ -33,21 +35,28 @@ export default {
       title: '',
       developer: '',
       description: '',
+      index: -1,
+
     }
   },
   methods: {
     addGame() {
-      this.$store.dispatch('addGame',{
-        id: this.id,
-        title: this.title,
-        developer: this.developer,
-        description: this.description,
+      const found = this.gameData.some(el => el.id === this.id);
+      if(!found){
+        this.$store.dispatch('addGame',{
+          id: this.id,
+          title: this.title,
+          developer: this.developer,
+          description: this.description,
       });
+        this.$router.push({name: 'game-list'})
+      }else{
+        alert('This ID already exists!')
+      }
         this.id = 0;
         this.title = '';
         this.developer = '';
         this.description = '';
-        this.$router.push({name: 'game-list'})
     },
   },
   mounted() {
