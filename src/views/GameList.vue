@@ -2,6 +2,7 @@
 <template>
 <div class="container">
     <h3>My Favorite Games</h3>
+    <td><button class="btn btn-primary" @click="sortGames">Sort</button></td>
   <table class="table table-hover"> 
     <thead>
       <tr>
@@ -32,12 +33,6 @@ import { mapGetters } from "vuex";
 export default {
   computed: mapGetters(['gameData']),
   name: 'GameList',
-    data(){
-      return{
-        games: [],
-        index: -1,
-    }
-  },
     methods:{
       deleteGame(id){
         this.$store.dispatch('deleteGame', id);
@@ -45,11 +40,16 @@ export default {
       editGameRoute(id){
         this.$store.dispatch('getData', id);
         this.$router.push({name: 'edit'})
-      }
+      },
+      // sortGames(a, b){
+      //   this.gameData.sort(function compareNumbers(a, b) {
+      //     return a - b;
+      //   });
+      //   console.log(this.gameData);
+      // }
     },
   mounted(){
-    this.games = this.$store.dispatch('localStorageInit')
-    console.log('games list', this.games)
+    this.$store.dispatch('localStorageInit')
   }
 }
 </script>

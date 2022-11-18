@@ -6,7 +6,6 @@
       <div class="navbar-nav">
           <router-link class="nav-link" style="text-decoration: none; " to="/add">Add Game</router-link>
           <router-link class="nav-link" style="text-decoration: none; " to="/">Game List</router-link>
-
       </div>
     </div>
   </div>
