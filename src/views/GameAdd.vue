@@ -18,7 +18,7 @@
         <input type="email" class="form-control" v-model="description">
       </div>
       <div class="mb-3">
-        <button class="btn btn-primary" @click="addGame">Submit</button>
+        <button class="btn btn-primary" @click="checkForm">Submit</button>
       </div>
   </div>
 </template>
@@ -39,27 +39,35 @@ export default {
   },
   methods: {
     addGame() {
-      const found = this.gameData.some(el => el.id === this.id);
-      if(!found){
-        if(!isNaN(this.id)){
-          this.$store.dispatch('addGame',{
-            id: this.id,
-            title: this.title,
-            developer: this.developer,
-            description: this.description,
-          });
-          this.$router.push({name: 'game-list'})
-        }else{
-          alert('Enter a number')
-        }
-      }else{
-        alert('This ID already exists! Please enter a unique ID')
-      }
-        this.id = 0;
-        this.title = '';
-        this.developer = '';
-        this.description = '';
+      this.$store.dispatch('addGame',{
+        id: this.id,
+        title: this.title,
+        developer: this.developer,
+        description: this.description,
+      });
+      this.id = 0;
+      this.title = '';
+      this.developer = '';
+      this.description = '';
+      this.$router.push({name: 'game-list'})
     },
+    checkForm(e){
+      const found = this.gameData.some(el => el.id === this.id);
+      if(this.id !== 0 && !this.id ||!this.title || !this.developer || !this.description){
+        alert('Missing Fields!!')
+      }else{
+        if(!found){
+          if(!isNaN(this.id)){
+          this.addGame()
+          }else{
+            alert('Enter a number')
+          }
+        }else{
+          alert('This ID already exists! Please enter a unique ID')
+        }
+      }
+      e.preventDefault();
+    }
   },
   mounted() {
      this.$store.dispatch('localStorageInit')

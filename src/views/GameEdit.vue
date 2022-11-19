@@ -19,9 +19,8 @@
       </div>
       <div class="mb-3">
         <button class="btn btn-dark" @click="backToList">Back</button>
-        <button class="btn btn-primary" @click="editGame">Submit</button>
+        <button class="btn btn-primary" @click="checkForm">Submit</button>
       </div>
-      
   </div>
 </template>
 
@@ -40,26 +39,34 @@ export default {
   },
   methods: {
     editGame() {
+        this.$store.dispatch('editGame',{
+          id: this.newId,
+          title: this.newTitle,
+          developer: this.newDeveloper,
+          description: this.newDescription,
+        });
+      this.newId = 0;
+      this.newTitle = '';
+      this.newDeveloper = '';
+      this.newDescription = '';
+      this.$router.push({name: 'game-list'})
+    },
+    checkForm(e){
       const found = this.gameData.some(el => el.id === this.newId);
-      if(!found){
-        if(!isNaN(this.newId)){
-          this.$store.dispatch('editGame',{
-            id: this.newId,
-            title: this.newTitle,
-            developer: this.newDeveloper,
-            description: this.newDescription,
-          });
-          this.$router.push({name: 'game-list'})
-        }else{
-          alert('Enter a number')
-        }
+      if(this.id !== 0 && !this.id || !this.newTitle || !this.newDeveloper || !this.newDescription){
+        alert('Missing Fields!!')
       }else{
-        alert('This ID already exists! Please enter a unique ID');
+        if(!found){
+          if(!isNaN(this.newId)){
+          this.editGame()
+          }else{
+            alert('Enter a number')
+          }
+        }else{
+          alert('This ID already exists! Please enter a unique ID')
+        }
       }
-        this.newId = 0;
-        this.newTitle = '';
-        this.newDeveloper = '';
-        this.newDescription = '';
+      e.preventDefault();
     },
     backToList(){
       this.$router.push({name: 'game-list'})
@@ -67,6 +74,7 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 .btn{
   margin-right: 5px;

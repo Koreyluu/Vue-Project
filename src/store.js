@@ -30,7 +30,24 @@ const gamesData = createStore({
         },
         saveGame(state){
             localStorage.setItem('myNewGames', JSON.stringify(state.games));
-        }
+        },
+        checkForm(e){
+            const found = this.gameData.some(el => el.id === this.newId);
+            if(!this.newTitle || !this.newDeveloper || !this.newDescription){
+              alert('Missing Fields!!')
+            }else{
+              if(!found){
+                if(!isNaN(this.newId)){
+                this.editGame()
+                }else{
+                  alert('Enter a number')
+                }
+              }else{
+                alert('This ID already exists! Please enter a unique ID')
+              }
+            }
+            e.preventDefault();
+          },
     },
     actions:{
         async localStorageInit({commit, state}){

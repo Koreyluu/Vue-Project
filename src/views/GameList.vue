@@ -41,12 +41,12 @@ export default {
         this.$store.dispatch('getData', id);
         this.$router.push({name: 'edit'})
       },
-      // sortGames(a, b){
-      //   this.gameData.sort(function compareNumbers(a, b) {
-      //     return a - b;
-      //   });
-      //   console.log(this.gameData);
-      // }
+      sortGames(){
+        this.gameData.sort(function compareNumbers(a, b) {
+          return a - b;
+        });
+        console.log(this.gameData);
+      }
     },
   mounted(){
     this.$store.dispatch('localStorageInit')
