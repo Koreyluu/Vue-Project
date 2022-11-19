@@ -53,7 +53,7 @@ export default {
     },
     checkForm(e){
       const found = this.gameData.some(el => el.id === this.newId);
-      if(this.id !== 0 && !this.id || !this.newTitle || !this.newDeveloper || !this.newDescription){
+      if(this.newId !== 0 && !this.newId || !this.newTitle || !this.newDeveloper || !this.newDescription){
         alert('Missing Fields!!')
       }else{
         if(!found){
