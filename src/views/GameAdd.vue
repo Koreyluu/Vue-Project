@@ -52,18 +52,20 @@ export default {
       this.$router.push({name: 'game-list'})
     },
     checkForm(e){
+      const gameFound = this.gameData.some(el => el.title === this.title);
       const found = this.gameData.some(el => el.id === this.id);
+      
       if(this.id !== 0 && !this.id ||!this.title || !this.developer || !this.description){
         alert('Missing Fields!!')
       }else{
-        if(!found){
+        if(!found && !gameFound){
           if(!isNaN(this.id)){
           this.addGame()
           }else{
-            alert('Enter a number')
+            alert('Enter a valid ID number')
           }
         }else{
-          alert('This ID already exists! Please enter a unique ID')
+          alert('This already exists! Please enter a unique Game and ID')
         }
       }
       e.preventDefault();
